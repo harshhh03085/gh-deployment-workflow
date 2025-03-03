@@ -1,0 +1,23 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - index.html
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.2.0
+        with:
+          branch: gh-pages  # The branch to deploy to (GitHub Pages)
+          folder: .  # The folder to deploy (the root folder for static site)
+          token: ${{ secrets.GITHUB_TOKEN }}
